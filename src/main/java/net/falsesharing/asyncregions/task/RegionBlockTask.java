@@ -1,0 +1,38 @@
+package net.falsesharing.asyncregions.task;
+
+import net.falsesharing.asyncregions.FoliaAsyncRegions;
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.World;
+import org.bukkit.block.Block;
+
+public final class RegionBlockTask {
+    private final FoliaAsyncRegions plugin;
+
+    public RegionBlockTask(FoliaAsyncRegions plugin) {
+        this.plugin = plugin;
+    }
+
+    public void dispatchChunkFill(World world, int chunkX, int chunkZ, int minY, int maxY, Material material) {
+        Runnable blockWork = () -> {
+            int startX = chunkX << 4;
+            int startZ = chunkZ << 4;
+            for (int x = 0; x < 16; ++x) {
+                for (int z = 0; z < 16; ++z) {
+                    for (int y = minY; y <= maxY; ++y) {
+                        Block block = world.getBlockAt(startX + x, y, startZ + z);
+                        if (block.getType() != material) {
+                            block.setType(material, false);
+                        }
+                    }
+                }
+            }
+        };
+
+        if (plugin.isFolia()) {
+            Bukkit.getRegionScheduler().execute(plugin, world, chunkX, chunkZ, blockWork);
+        } else {
+            Bukkit.getScheduler().runTask(plugin, blockWork);
+        }
+    }
+}

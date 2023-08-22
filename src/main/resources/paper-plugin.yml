@@ -1,0 +1,10 @@
+name: folia-async-regions
+version: '1.4.0'
+main: net.falsesharing.asyncregions.FoliaAsyncRegions
+api-version: '1.20'
+folia-supported: true
+description: High-performance regional block modification engine for Folia and Paper.
+author: FalseSharing
+permissions:
+  asyncregions.command.fill:
+    default: op
