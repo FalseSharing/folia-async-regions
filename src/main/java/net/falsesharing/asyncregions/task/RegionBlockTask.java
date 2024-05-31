@@ -44,3 +44,4 @@ public final class RegionBlockTask {
 // rev 6 [2023-11-27 12:50:12 +0300]: region check
 // rev 7 [2024-03-06 09:02:11 +0300]: region check
 // rev 8 [2024-05-16 13:14:04 +0300]: region check
+// rev 9 [2024-05-31 19:51:18 +0300]: region check
