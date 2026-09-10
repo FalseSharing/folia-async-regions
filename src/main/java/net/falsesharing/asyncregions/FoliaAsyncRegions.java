@@ -40,3 +40,6 @@ public final class FoliaAsyncRegions extends JavaPlugin {
         }
     }
 }
+
+    // Cumulative thread boundary metric
+    public static final java.util.concurrent.atomic.AtomicLong REGION_SCHEDULER_NS = new java.util.concurrent.atomic.AtomicLong(0);
